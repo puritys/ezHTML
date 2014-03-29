@@ -1,0 +1,128 @@
+# title  = <h1>title</h1>
+## h2
+### h3
+#h1 title = <h1>title</h1>
+#h2 title = <h2>title</h2>
+#h6 title = <h6>title</h6>
+
+#div content = <div>content</div>
+#code content = <code>code</code>
+#p content = <p>content</p>
+#div[profile] content = <div class="profile">content</div>
+
+/** list **/
+* list1
+*[on,lang=tw] list2
+* list3
+
+* list 4
+
+//result
+<ul class="list">
+    <li>list1</li>
+    <li class="on" lang="tw">list2</li>
+    <li>list3</li>
+    <li>list4</li>
+</ul>
+
+/* quote */
+#q content = <quote>content</quote>
+#! xxxx = <div class="highlight">xxxxx</div>
+
+/***demo link ***/
+#demo[popup,200,200] http://xxx.xx.xxx
+#demo[target=popup,w=200,h=200] http://xxx.xx.xxx
+
+<p>
+    <a class="demo-link" href="xxx" target="_blank">
+        <i class="glyphicon glyphicon-file"></i>
+        View Demo
+    </a>
+</p> 
+
+#demo[title=xxxx,tab=popup]#
+<div> xxx xx</div>
+#demoEnd#
+
+<div>
+    <div class="demo-header">title</div>
+    <div class="demo-body clearfix">
+        html xxx
+    </div> 
+</div>
+
+/* show javascript or css code */
+#code[css]#
+<style>
+body #content .data img:hover
+</style>
+
+<div>xxx</div>
+
+
+#codeEnd#
+
+
+#code[js]#
+function () {}
+#codeEnd#
+
+/*** img ***/
+#img[200,100] http://sxxx
+#img[w=200,h=100,alt=xxx,!link,link=false,href=xxx] http://sxxx
+<a target="_blank" href="xxx"><img src="xxx" alt="" /></a>
+
+/****image left, text right******/
+#img[left,200,100] http://sxxx 
+#div content
+#div content
+#span xxx
+#imgEnd#
+
+#img[right,200,100] http://sxxx content
+
+
+/**** table ****/
+
+| *Chrome | *Firefox | *IE    |
+| Yes     | Yes      | IE6+   |
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Chrome</th>
+            <th>Firefox</th>
+            <th>IE</th>
+            <th>Opera</th>
+            <th>Safari</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>IE6+</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+    </tbody>
+</table>
+
+
+  #h1 title
+<h1 class="indent">title</h1>
+
+    #div title
+<div class="indent2">title</div>
+
+
+
+#grid[2/3]
+%code%
+%codeEnd%
+#gridEnd#
+
+#grid[1/3]
+<div class="ss">
+
+#gridEnd#
