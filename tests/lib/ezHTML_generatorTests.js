@@ -1,5 +1,8 @@
 require("phplike");
+
 var ez = require("../../lib/ezHTML_generator.js");
+global.window = [];
+
 
 var g = new ez();
 var text = file_get_contents("text.txt");
