@@ -6,7 +6,6 @@
 	destination 要存轉換後的html textarea
 	paragraphMenu 段落選單
 	*****/
-	window['vjCodeEditor']=vjCodeEditor;
 	var isloadGoogleCode=0;
 	var self;
 	var cursPos; // 窗口全局变量，保存目标 TextBox 的最后一次活动光标位置
@@ -16,18 +15,19 @@
 	view 顯示處
 	
 	**/
-	function vjCodeEditor(config){
+	function ezGUI(config) {//{{{
 		this.config=config;
 		this.paragraph=Array();
 		this.editParagraphNum=-1;
 		self = this;
-		this.text=new vj_textToHTML();
-		if(isloadGoogleCode!=1){
+		this.text = new ezHTML_generator();
+
+		if (isloadGoogleCode!=1) {
 			this.text.loadGoogleCodePretty(this.config.googleCodePerttyBaseUrl);
 			isloadGoogleCode=1;
 		}
 		
-		if(this.config.iframe){
+		if (this.config.iframe) {
 			var f=document.getElementById(this.config.iframe);
 			var head='';
 			if(this.config.css){
@@ -46,20 +46,19 @@
 			
 		}
 		this.setEvent();
-	}
+	}//}}}
 	
-	var o=vjCodeEditor.prototype;
+	var o = ezGUI.prototype;
 	o.setEvent=function(){
-		$("#"+this.config.source).keydown(this.keydown);
-		
-		
+		$(this.config.source).keydown(this.keydown);
 	};
-	o.keydown=function(event){
-		var code=event.keyCode;
-		if(code==9){
-			var s=$("#"+self.config.source);
-			self.insertAtCursor(s[0],'   ');
 
+	o.keydown=function(event) {
+		var code=event.keyCode;
+		if (code==9) {
+			var s = $(self.config.source);
+			self.insertAtCursor(s[0],'  ');
+            event.preventDefault();
 			return false;
 		}
 		
@@ -99,27 +98,30 @@
 	
 	
 	//將程式碼轉成可讀的文件 (當前內容)
-	o.transform=function(){
-		//儲存當前的內容
+	o.transform=function() {
+        var text;
+		//save the html of editing paragraph.
 		self.saveParagraph();
-		var html=this.text.transform(this.config.source,this.config.destination_view);
-		//var s=$('#'+this.config.destination_view).html();
+        text = $(this.config.source).val();
+		var html = this.text.transform(text);
+
 		$("#"+this.config.destination).val(html);
-		if(this.config.iframe){
+		if (this.config.iframe) {
 			var f=document.getElementById(this.config.iframe);
 			f.contentWindow.document.body.innerHTML=html;
 			//$('#'+this.config.iframe).html(s);
-		}
+		} else {
+        	$("#"+this.config.destination_view).html(html);
+        }
 	};
 	
 	//轉換全部內容
-	o.transformAll=function(){
-		if(self.editParagraphNum>=0){
+	o.transformAll = function() {
+		if (self.editParagraphNum>=0) {
 			//儲存當前的內容
 			self.saveParagraph();
 			self.editParagraphNum=-1; // 清空 載入全部
-		}
-		else{
+		} else {
 			self.splitParagraph();
 			self.outputPieceTable();
 		}
@@ -131,8 +133,9 @@
 		}
 
 		$("#"+self.config.source).val(html);
+self.transform();
 		try{
-			self.transform();
+//			self.transform();
 		}
 		catch(err){
 			alert("程式發生錯誤。");
@@ -143,6 +146,7 @@
 	
 	//將程式碼切割成多個片段
 	o.splitParagraph=function(){
+return ;
 		var code=$("#"+this.config.source).val();
 		var re=/%---([^\n\r]+)/,mat,mat2,code2,search,search2;
 		var re2=/([a-z]+)---/,data;
@@ -182,8 +186,7 @@
 			this.paragraph[len]=Object();
 			if(mat2 && mat2[1]){
 				this.paragraph[len].position=mat2[1];
-			}
-			else{
+			} else {
 				this.paragraph[len].position="";
 			}
 			this.paragraph[len].content=data;
@@ -347,5 +350,7 @@
 	String.prototype.rTrim = function()
 	{
 		return this.replace(/([\\s]*$)/g, "");
-	} 
+	}
+ 
+	window.ezGUI = ezGUI;
 }())
