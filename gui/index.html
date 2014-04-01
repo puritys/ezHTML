@@ -44,9 +44,15 @@ body{
 
 #p Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for <code>#content</code>, 10 for .data, 10 for :hover, 1 for body and 1 for img.
 
+#p[alt=test] test
 
 | *Chrome | *Firefox | *IE    |
 | Yes     | Yes      | IE6+   |
+
+#img[50] ../data/HTML.png#
+#img[100,200,alt=test, title="the title"] ../data/HTML.png#
+
+#img ../data/HTML.png#
 
 * 註冊Yahoo API
   * 你必需先到 https://developer.apps.yahoo.com/projects 註冊一個Project
