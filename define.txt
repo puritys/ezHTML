@@ -84,7 +84,7 @@ function () {}
 
 /**** table ****/
 
-| *Chrome | *Firefox | *IE    |
+| *Chrome | *Firefox | *IE*    |
 | Yes     | Yes      | IE6+   |
 
 <table class="table">

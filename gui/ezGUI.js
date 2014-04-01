@@ -98,7 +98,7 @@
 	
 	
 	//將程式碼轉成可讀的文件 (當前內容)
-	o.transform=function() {
+	o.transform = function() {
         var text;
 		//save the html of editing paragraph.
 		self.saveParagraph();
@@ -128,16 +128,15 @@
 		
 		var n=self.paragraph.length;
 		var html="";
-		for(var i=0;i<n;i++){
+		for (var i=0;i<n;i++) {
 			html+=self.paragraph[i].content;
 		}
 
 		$(self.config.source).val(html);
-self.transform();
 		try{
-//			self.transform();
-		}
-		catch(err){
+			self.transform();
+		} catch(err) {
+            console.log(err);
 			alert("程式發生錯誤。");
 		}
 	};

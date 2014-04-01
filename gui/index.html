@@ -40,7 +40,13 @@ body{
 <textarea style="width:500px;height:400px;padding: 10px;" id="plain-text-source" >
 # The title of article
 
-#h2 開發步驟YahooBBauth 開發步驟
+#h2 CSS Specificity
+
+#p Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for <code>#content</code>, 10 for .data, 10 for :hover, 1 for body and 1 for img.
+
+
+| *Chrome | *Firefox | *IE    |
+| Yes     | Yes      | IE6+   |
 
 * 註冊Yahoo API
   * 你必需先到 https://developer.apps.yahoo.com/projects 註冊一個Project
@@ -48,15 +54,6 @@ body{
 * 判定Response是否正確
 * Get WSSID and Cookie
 
-    ! Important message
-
-    ![example xxx]
-<div style="width: 200px;margin-left: 20px;">
-    test code
-</div>
-## code
-#span fsaf
-  ### test
 
 
 #code[js]#
@@ -66,21 +63,27 @@ function test(){
     var gseg="gseg";
     var gseg="gseg";
 }
-%codeEnd%
+#codeEnd#
 
 ## YahooBBauth 2
 * 使用者登入，並取得 Token
 * 判定Response是否正確
 * Get WSSID and Cookie
 
+## Special Definition
+    ! Important message
+
+    ![example xxx]
+
 </textarea>
 <button onclick="editor.transform();return false;">轉換目前內容</button>
 <button onclick="editor.transformAll();return false;">轉換全部</button>
 </div>
-<div style="clear:both;width: 100%; height:5px; background:#a00;">
-
+<div style="clear:both;width: 100%; background:#eee; margin: 10px 0;padding: 5px 20px;">
+    <b>Result Preview</b>
 </div>
 
+<div> &nbsp; </div>
 <div class="view" id="view" style="width: 90%;margin: 10px 0 0 10px;">
 
 </div>
