@@ -117,10 +117,10 @@
 	
 	//轉換全部內容
 	o.transformAll = function() {
-		if (self.editParagraphNum>=0) {
-			//儲存當前的內容
+		if (self.editParagraphNum >= 0) {
+			//save content in the textarea
 			self.saveParagraph();
-			self.editParagraphNum=-1; // 清空 載入全部
+			self.editParagraphNum = -1; // User is editing all ocontent, set edit paragraph to -1
 		} else {
 			self.splitParagraph();
 			self.outputPieceTable();
@@ -132,7 +132,7 @@
 			html+=self.paragraph[i].content;
 		}
 
-		$("#"+self.config.source).val(html);
+		$(self.config.source).val(html);
 self.transform();
 		try{
 //			self.transform();
@@ -144,53 +144,52 @@ self.transform();
 	
 	
 	
-	//將程式碼切割成多個片段
+	//Split code to multi paragraph by h2
 	o.splitParagraph=function(){
-return ;
-		var code=$("#"+this.config.source).val();
-		var re=/%---([^\n\r]+)/,mat,mat2,code2,search,search2;
-		var re2=/([a-z]+)---/,data;
+		var code = $(this.config.source).val();
+		var re=/[\s]*(##|#h2)/i, mat, mat2, code2, search, search2;
+		var re2=/([a-z]+)/, data;
 		
-		search=code.search(re);
+		search = code.search(re);
 		this.paragraph=Array();
-		this.paragraph[0]=Object();
-		if(search==-1){//格式不對的話
-			this.paragraph[0].content=$("#"+this.config.source).val();
+		this.paragraph[0] = Object();
+		if (search==-1) {//格式不對的話
+			this.paragraph[0].content = $("#"+this.config.source).val();
 			this.paragraph[0].position="";
 			return true;
 		}
 		
-		this.paragraph[0].content=code.substr(0,search);
-		this.paragraph[0].position="";
-		code=code.substr(search,code.length-search);
-		data="";
-		while(mat=code.match(re)){
+		this.paragraph[0].content = code.substr(0,search);
+		this.paragraph[0].position = "";
+		code = code.substr(search,code.length-search);
+		data = "";
+
+		while (mat=code.match(re)) {
 
 			//抓下一段開頭
 			//code2=code.substr(mat[0].length+1,code.length-(mat[0].length+1) );
 			//search2=code2.search(re);
-			search2=this.getMenuStartPosition(mat,code);
+			search2 = this.getMenuStartPosition(mat,code);
 			//alert(search2);
 			//return 0;
 
-			if(search2==-1){
+			if (search2==-1) {
 				search2=code.length;
-			}
-			else{
+			} else {
 				//search2=search2+mat[0].length+1;
 			}
-			data+=code.substr(0,search2);
+			data += code.substr(0,search2);
 			
-			mat2=mat[1].match(re2);
-			var len=this.paragraph.length;
+			mat2 = mat[1].match(re2);
+			var len = this.paragraph.length;
 			this.paragraph[len]=Object();
 			if(mat2 && mat2[1]){
 				this.paragraph[len].position=mat2[1];
 			} else {
 				this.paragraph[len].position="";
 			}
-			this.paragraph[len].content=data;
-			code=code.substr(data.length,code.length-data.length);
+			this.paragraph[len].content = data;
+			code = code.substr(data.length,code.length-data.length);
 			data="";
 			
 		}
@@ -198,7 +197,7 @@ return ;
 	
 	/****抓下一個%--的開始位置****/
 	o.getMenuStartPosition=function(mat,code){
-		var re=/[^\n\r]*%---([^\n\r]+)/;
+		var re=/[\s]*(##|#h2)/;
 		var pos,len=0;
 		len=mat.index+mat[0].length+1;
 		code2=code.substr(len,code.length-(len) );
@@ -232,21 +231,21 @@ return ;
 	o.outputPieceTable=function(){
 		var html="";
 		var n=this.paragraph.length,i,mat,title;
-		var re=/%---([^\n\r]+)/,p,a;
+		var re=/[\s]*(##|#h2)[\s]([^\n\r]+)/,p,a;
 		$("#"+self.config.paragraphMenu).html('');
-		for(i=0;i<n;i++){
+		for (i=0;i<n;i++) {
 			if(!this.paragraph[i].content.trim()){continue;}
-			mat=this.paragraph[i].content.match(re);
-			if(mat && mat[1]){
-				title=mat[1];
-			}
-			else{
-				title="head";
+			mat = this.paragraph[i].content.match(re);
+
+			if (mat && mat[2]) {
+				title = mat[2];
+			} else {
+				title = "Beginning";
 			}
 			 
 			a=document.createElement('a');
 			a.innerHTML=title.substr(0,10);
-			a.className="codeEditor_MenuA";
+			a.className = "codeEditor_MenuA";
 			a.href="#";
 			a.i=i;
  
@@ -254,7 +253,7 @@ return ;
 				self.editParagraph(this.i);
 				return false;
 			});
-			$(a).mouseup(function(event){
+			$(a).mouseup(function(event) {
 				if(event.button==2){
 					if(window.confirm('Delete it?'))
 						self.deleteParagraph(this.i);
@@ -292,17 +291,18 @@ return ;
 		self.editParagraph(n,'nosave');
 	}
 	
-	//編輯某個段落
-	o.editParagraph=function(p,type){
-		if(!type || type!='nosave')
+	//edit a paragraph
+	o.editParagraph=function(p,type) {
+		if (!type || type!='nosave') {
 			self.saveParagraph();//先儲存上一筆
-		$("#"+self.config.source).val(self.paragraph[p].content.trim());
+        }
+		$(self.config.source).val(self.paragraph[p].content.trim());
 		self.editParagraphNum=p;
 	}
 	//儲存當前內容進入目標 paragraph
 	o.saveParagraph=function(){
 		if(self.editParagraphNum>=0){
-			self.paragraph[self.editParagraphNum].content=$("#"+self.config.source).val();	
+			self.paragraph[self.editParagraphNum].content=$(self.config.source).val();	
 		}
 	};
 	//刪除段落
