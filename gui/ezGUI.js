@@ -133,6 +133,8 @@
 		}
 
 		$(self.config.source).val(html);
+
+        //self.transform();
 		try{
 			self.transform();
 		} catch(err) {
@@ -267,7 +269,7 @@
 		}
 		
 		a=document.createElement('a');
-		a.innerHTML="Add New";
+		a.innerHTML="New Section";
 		a.href="#";
 		a.style.display="block";
 		a.style.marginTop="10px";

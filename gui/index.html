@@ -11,12 +11,12 @@ body{
 }
 .codeEditor_MenuA{
 	display:block;
-	width:120px;
-	height:25px;
-	background:#f3f3f3;
-	border:1px solid #2f2f2f;
-	padding:3px 0 0 3px;
-	overflow:hidden;
+	width: 130px;
+	height: 25px;
+	background: #f3f3f3;
+	border: 1px solid #2f2f2f;
+	padding: 3px 0 0 3px;
+	overflow: hidden;
 	margin:0px 0 -1px 0;
 	text-decoration:none;
 }
@@ -31,28 +31,51 @@ body{
 <script src="../lib/google-code-prettify/src/prettify.js"></script>
 <!--script src="../lib/textControl.js"></script-->
 <script src="ezGUI.js"></script>
-<body>
+<body style="margin:20px;">
 
-<div id="codeEditorLeft" style="float:left;width:128px;margin:0 2px 0 0;"></div>
+<div id="codeEditorLeft" style="float:left;width:140px;margin:0 20px 0 0;"></div>
  
-<div style="float:left;width:500px; ">
+<div style="float:left;width:500px;margin: 0 0 30px 0;">
 
-<textarea style="width:500px;height:400px;padding: 10px;" id="plain-text-source" >
+<textarea style="width:700px;height:400px;padding: 10px; margin: 0 0 10px 0; font-size: 18px;" id="plain-text-source" >
 # The title of article
 
-#h2 CSS Specificity
+#h2 Simple HTML Tag
 
 #p Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for <code>#content</code>, 10 for .data, 10 for :hover, 1 for body and 1 for img.
 
 #p[alt=test] test
 
+
+## Table
 | *Chrome | *Firefox | *IE    |
 | Yes     | Yes      | IE6+   |
 
-#img[50] ../data/HTML.png#
+
+## Image
+
 #img[100,200,alt=test, title="the title"] ../data/HTML.png#
 
-#img ../data/HTML.png#
+## Image with content, and arrange image to the left side.
+
+#img[left,200,100] ../data/HTML.png#
+#div Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for #content, 10 for .data, 10 for :hover, 1 for body and 1 for img.
+#div content
+#span xxx
+#imgEnd#
+
+#div -----------------------------------------
+
+## Image is in the right side.
+
+
+#img[200,100, right] ../data/HTML.png#
+#div Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for #content, 10 for .data, 10 for :hover, 1 for body and 1 for img.
+#span xxx
+#imgEnd#
+
+## List.
+
 
 * 註冊Yahoo API
   * 你必需先到 https://developer.apps.yahoo.com/projects 註冊一個Project
@@ -60,8 +83,12 @@ body{
 * 判定Response是否正確
 * Get WSSID and Cookie
 
+## HTML
+#html#
+<div style = "color: #a00;"> red color</div>
+#htmlEnd#
 
-
+## Show PHP/CSS/JS/C++ Code
 #code[js]#
 var b="faw";
 var c="fawf";
@@ -86,7 +113,7 @@ function test(){
 <button onclick="editor.transformAll();return false;">轉換全部</button>
 </div>
 <div style="clear:both;width: 100%; background:#eee; margin: 10px 0;padding: 5px 20px;">
-    <b>Result Preview</b>
+    <b>Transform Result Preview</b>
 </div>
 
 <div> &nbsp; </div>
