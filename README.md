@@ -14,6 +14,13 @@ But It has more features than markdown,  support dynamic HTML and have a better 
 #h6 This is a h6 tag.
 #div This is a div tag.
 #span This is a span tag.
+#p This is a p tag.
+</pre>
+
+### tag attributes
+
+<pre>
+#div[className,lang="en"] content
 </pre>
 
 ## Image Tag
@@ -38,6 +45,7 @@ But It has more features than markdown,  support dynamic HTML and have a better 
 <pre>
 #img[left,200,100] image.jpg#
 #div Here is the content of article wrap by a html tag "div".
+#p Here is the content of article wrap by a html tag "p".
 #imgEnd#
 </pre>
 
