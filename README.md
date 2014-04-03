@@ -7,8 +7,33 @@ But It has more features than markdown,  support dynamic HTML and have a better 
 
 ## Text wrap Image
 
-`#img[left,200,100] image.jpg#`
+> Image is in the left.
 
-`#div Here is the content of article wrap by a html tag "div".`
+<pre>
+#img[left,200,100] image.jpg#
+#div Here is the content of article wrap by a html tag "div".
+#imgEnd#
+</pre>
 
-`#imgEnd#`
+> Image is in the right.
+
+<pre>
+#img[right,200,100] image.jpg#
+#div Here is the content of article wrap by a html tag "div".
+#imgEnd#
+</pre>
+
+
+## Show PHP/CSS/JS/C++ Code
+
+<pre>
+#code[js]#
+var b="faw";
+var c="fawf";
+function test(){
+    var gseg="gseg";
+    var gseg="gseg";
+}
+#codeEnd#
+</pre>
+
