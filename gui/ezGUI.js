@@ -126,14 +126,13 @@
 			self.outputPieceTable();
 		}
 		
-		var n=self.paragraph.length;
-		var html="";
+		var n = self.paragraph.length;
+		var html = "";
 		for (var i=0;i<n;i++) {
 			html+=self.paragraph[i].content;
 		}
 
 		$(self.config.source).val(html);
-
         //self.transform();
 		try{
 			self.transform();
@@ -154,8 +153,8 @@
 		search = code.search(re);
 		this.paragraph=Array();
 		this.paragraph[0] = Object();
-		if (search==-1) {//格式不對的話
-			this.paragraph[0].content = $("#"+this.config.source).val();
+		if (search == -1) {//格式不對的話
+			this.paragraph[0].content = $(this.config.source).val();
 			this.paragraph[0].position="";
 			return true;
 		}
@@ -235,7 +234,9 @@
 		var re=/[\s]*(##|#h2)[\s]([^\n\r]+)/,p,a;
 		$("#"+self.config.paragraphMenu).html('');
 		for (i=0;i<n;i++) {
-			if(!this.paragraph[i].content.trim()){continue;}
+			if (!this.paragraph[i].content || !this.paragraph[i].content.trim()) {
+                continue;
+            }
 			mat = this.paragraph[i].content.match(re);
 
 			if (mat && mat[2]) {

@@ -53,17 +53,19 @@ blockquote {
   border-radius: 5px;
 }
 
-.image-wrap:after {
+.media-image:after {
     content: "";
     display: block;
     clear: both;
 }
-.image-wrap .image-left {
+.pull-left {
     float: left;
+    margin-right: 10px;
 }
 
-.image-wrap .image-right {
+.pull-right {
     float: right;
+    margin-left: 10px;
 }
 
 ul.list {
@@ -91,7 +93,6 @@ ul.list li {
   margin-left: 80px !important;
 }
 .codeBlock {
-  width: 90%;
   margin: 12px auto;
 }
 .codeBlock .title {
