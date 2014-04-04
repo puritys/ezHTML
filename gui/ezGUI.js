@@ -229,11 +229,13 @@
 	
 	//輸出 各個片段的 move table
 	o.outputPieceTable=function(){
-		var html="";
+		var html="", li, ul;
 		var n=this.paragraph.length,i,mat,title;
 		var re=/[\s]*(##|#h2)[\s]([^\n\r]+)/,p,a;
 		$("#"+self.config.paragraphMenu).html('');
-		for (i=0;i<n;i++) {
+        ul = document.createElement('ul');
+        ul.className = "list-group";
+  		for (i=0;i<n;i++) {
 			if (!this.paragraph[i].content || !this.paragraph[i].content.trim()) {
                 continue;
             }
@@ -245,12 +247,13 @@
 				title = "Beginning";
 			}
 			 
-			a=document.createElement('a');
-			a.innerHTML=title.substr(0,10);
-			a.className = "codeEditor_MenuA";
+	        li = document.createElement('li');
+            li.className = "list-group-item";
+			a = document.createElement('a');
+			a.innerHTML = title.substr(0,10);
 			a.href="#";
 			a.i=i;
- 
+
 			$(a).click(function(event){
 				self.editParagraph(this.i);
 				return false;
@@ -265,11 +268,13 @@
 				return false;
 			});
 		 
-			$("#"+this.config.paragraphMenu).append(a);
-
+            li.appendChild(a);
+            ul.appendChild(li);
 		}
-		
-		a=document.createElement('a');
+
+	    $("#"+this.config.paragraphMenu).append(ul);
+
+		a = document.createElement('a');
 		a.innerHTML="New Section";
 		a.href="#";
 		a.style.display="block";

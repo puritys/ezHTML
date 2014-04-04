@@ -86,5 +86,19 @@ describe('Image html tag', function(){
 
 
 
+//mocha lib/ --grep Table -d
+describe('Table html tag', function(){
+    it('Test |x | x | to table', function () {
+        var text = '| *T1| *T2| *T3| \n \
+                    | C1 | C2 | C3 |';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+        assert.equal(1, result.match(/<table/g).length);
+        assert.equal(1, result.match(/<th>T1<\/th>/g).length);
+        assert.equal(1, result.match(/<td>C3<\/td>/g).length);
 
+    });
+
+
+});
 
