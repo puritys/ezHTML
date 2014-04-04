@@ -82,6 +82,17 @@ describe('Image html tag', function(){
 
     });
 
+    it('Test #img image left, text right', function () {
+        var text = '#img[left] ../img.jpg  \n \
+                    #div content \n \
+                    #imgEnd#';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+        assert.equal(1, result.match(/class="pull-left"/).length);
+
+
+    });
+
 });
 
 
