@@ -51,6 +51,8 @@ describe('Normal html tag', function(){
     it('Test #div to div', function(){
         var text = '#div div content';
         var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
         assert.equal("<div>div content</div>", result);
     });
 
@@ -93,8 +95,31 @@ describe('Image html tag', function(){
 
     });
 
+    it('Test #img indent', function () {
+        var text = '    #img ../img.jpg';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+        assert.equal(1, result.match(/indent2/).length);
+
+
+    });
+
+
 });
 
+//mocha lib/ --grep Quoteblock -d
+describe('Quoteblock html tag', function(){
+    it('Test #q to quoteblock', function () {
+        var text = '  #q test';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+        assert.equal(1, result.match(/<quoteblock/g).length);
+        assert.equal(1, result.match(/indent1/g).length);
+
+    });
+
+
+});
 
 
 //mocha lib/ --grep Table -d
