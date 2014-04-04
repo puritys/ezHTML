@@ -17,6 +17,10 @@ h2 {
     font-weight: normal;
 }
 
+h2.indent1 {
+    border-bottom: 1px dashed #3C4041;
+}
+
 h3 {
     background: white;
 }
