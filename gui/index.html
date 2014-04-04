@@ -24,7 +24,7 @@ body{
 	background:#cecece;
 }
 </style>
-<link href='default.css' rel="stylesheet" type="text/css">
+<link href='bootstrap/css/bootstrap.min.css' rel="stylesheet" type="text/css">
 
 <script src="jquery.js"></script>
 <script src="../lib/ezHTML_generator.js"></script>
@@ -33,7 +33,21 @@ body{
 <script src="ezGUI.js"></script>
 <body style="margin:20px;">
 
-<div id="codeEditorLeft" style="float:left;width:140px;margin:0 20px 0 0;"></div>
+
+
+<ul class="nav nav-tabs" style="margin: 0 0 20px 0;">
+  <li class="active"><a href="index.html">ezHTML Demo</a></li>
+  <li><a href="#">Document</a></li>
+  <li><a href="#">Author</a></li>
+
+</ul>
+
+
+
+<p style="margin: 20px 0;">ezHTML is a transformer of document editor, it will transform the code to be a pretty HTML.</p>
+
+<!--- editor -->
+<div id="codeEditorLeft" style="float:left;width:140px;margin:0px 20px 0 0;"></div>
  
 <div style="float:left;width:500px;margin: 0 0 30px 0;">
 
@@ -109,8 +123,8 @@ function test(){
     ![example xxx]
 
 </textarea>
-<button onclick="editor.transform();return false;">轉換目前內容</button>
-<button onclick="editor.transformAll();return false;">轉換全部</button>
+<button onclick="editor.transform();return false;">Transform content from textarea</button>
+<button onclick="editor.transformAll();return false;">Transform all sections.</button>
 </div>
 <div style="clear:both;width: 100%; background:#eee; margin: 10px 0;padding: 5px 20px;">
     <b>Transform Result Preview</b>
@@ -121,20 +135,20 @@ function test(){
 
 </div>
 
-<iframe src="about:blank" id="thif" style="width:100%;height:500px;margin:10px;" frameborder=0></iframe>
+<iframe src="about:blank" id="preview" style="width:100%;height:2800px;margin:10px;" frameborder=0></iframe>
 <div style="clear:both;"></div>
 
-<textarea   id="t2" ></textarea>
+<textarea type="hidden" name="result" id="result" style="display: none;"></textarea>
 
 <script>
 var editor = new ezGUI({
 "paragraphMenu":"codeEditorLeft",
 "source":"#plain-text-source",
-"destination_view":"view",
-"destination":"t2",
+//"destination_view":"view",
+"destination":"result",
 "googleCodePerttyBaseUrl":"../lib/google-code-prettify/src/",
-//"iframe":"thif",
-"css":["http://dev.puritys.me/mysite/templates/vi_tp/css/vj_content.css","http://dev.puritys.me/cms2/library/editor/google-code-prettify/styles/jHeightLight.css"]});
+"iframe":"preview",
+"css":["default.css"]});
 editor.splitParagraph();
 editor.outputPieceTable();
 editor.transformAll();

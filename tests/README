@@ -1,0 +1,10 @@
+Unit test library:
+http://visionmedia.github.io/mocha/
+
+Execute unit tets command
+mocha ./
+mocha lib/ezHTML_generatorTests.js
+
+
+Dependency package
+npm install -g phplike
