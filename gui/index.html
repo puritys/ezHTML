@@ -32,7 +32,7 @@ textarea {
 <script src="../lib/ezHTML_generator.js"></script>
 <script src="../lib/google-code-prettify/src/prettify.js"></script>
 <!--script src="../lib/textControl.js"></script-->
-<script src="ezGUI.js"></script>
+<script src="ezHTML_GUI.js"></script>
 <body style="margin:20px;">
 
 
@@ -142,14 +142,15 @@ function test(){
 <textarea type="hidden" name="result" id="result" style="display: none;"></textarea>
 
 <script>
-var editor = new ezGUI({
-"paragraphMenu":"codeEditorLeft",
-"source":"#plain-text-source",
-//"destination_view":"view",
-"destination":"result",
-"googleCodePerttyBaseUrl":"../lib/google-code-prettify/src/",
-"iframe":"preview",
-"css":["default.css"]});
+var editor = new ezHTML_GUI({
+              "paragraphMenu": "codeEditorLeft",
+                     "source": "#plain-text-source",  //The textarea to write your document.
+         //"destination_view": "view",
+                "destination": "result",       // Set result into hidden textarea
+    "googleCodePerttyBaseUrl": "../lib/google-code-prettify/src/",
+                     "iframe": "preview",      //Show result in iframe [id=preview]
+                        "css": ["default.css"] //Auto load css file in iframe
+});
 editor.splitParagraph();
 editor.outputPieceTable();
 editor.transformAll();
