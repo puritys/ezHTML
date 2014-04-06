@@ -147,7 +147,7 @@
 	//Split code to multi paragraph by h2
 	o.splitParagraph=function(){
 		var code = $(this.config.source).val();
-		var re=/[\s]*(##|#h2)/i, mat, mat2, code2, search, search2;
+		var re=/[^#](##|#h2)[\s]/i, mat, mat2, code2, search, search2;
 		var re2=/([a-z]+)/, data;
 		
 		search = code.search(re);
@@ -165,13 +165,7 @@
 		data = "";
 
 		while (mat=code.match(re)) {
-
-			//抓下一段開頭
-			//code2=code.substr(mat[0].length+1,code.length-(mat[0].length+1) );
-			//search2=code2.search(re);
 			search2 = this.getMenuStartPosition(mat,code);
-			//alert(search2);
-			//return 0;
 
 			if (search2==-1) {
 				search2=code.length;
@@ -195,9 +189,9 @@
 		}
 	}
 	
-	/****抓下一個%--的開始位置****/
+	/****抓下一個##的開始位置****/
 	o.getMenuStartPosition=function(mat,code){
-		var re=/[\s]*(##|#h2)/;
+		var re=/[^#](##|#h2)[\s]/;
 		var pos,len=0;
 		len=mat.index+mat[0].length+1;
 		code2=code.substr(len,code.length-(len) );
