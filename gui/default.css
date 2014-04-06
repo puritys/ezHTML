@@ -115,7 +115,7 @@ ul.list li {
 }
 /* Specify class=linenums on a pre to get line numbering */
 .codeBlock {
-  color: white;
+  color: black;
   background-color: #F7F7F9;
   -webkit-font-smoothing: antialiased;
 }
@@ -201,11 +201,13 @@ code.prettyprint,
 code.prettyprint {
   display: block;
 }
+
 code {
     border: 1px solid #cecece;
     border-radiu: 3px;
     padding: 2px 5px;
 }
+
 /*********table ******/
 .table {
   width: 100%;

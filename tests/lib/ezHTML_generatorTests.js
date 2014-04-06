@@ -59,6 +59,32 @@ describe('Normal html tag', function(){
 
 });
 
+describe('Normal html attribute', function(){
+    it('Test class', function(){
+        var text = '#h4[class=aa] h4';
+        var result = ezHTML.transform(text);
+        assert.equal(1, result.match(/class="aa"/).length);      
+
+        var text = '#h4[class="aa"] h4';
+        var result = ezHTML.transform(text);
+        assert.equal(1, result.match(/class="aa"/).length);      
+
+        var text = '#h4[aa] h4';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
+        assert.equal(1, result.match(/class="aa"/).length);      
+
+        var text = '#div[a] div content';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
+        assert.equal(1, result.match(/class="a"/).length);      
+
+    });
+
+});
+
 
 
 
@@ -95,6 +121,17 @@ describe('Image html tag', function(){
 
     });
 
+    it('Test #img image right, text right', function () {
+        var text = '#img[right] ../img.jpg  \n \
+                    #div content \n \
+                    #imgEnd#';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+        assert.equal(1, result.match(/class="pull-right"/).length);
+
+
+    });
+
     it('Test #img indent', function () {
         var text = '    #img ../img.jpg';
         var result = ezHTML.transform(text);
@@ -113,7 +150,7 @@ describe('Quoteblock html tag', function(){
         var text = '  #q test';
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
-        assert.equal(1, result.match(/<quoteblock/g).length);
+        assert.equal(1, result.match(/<blockquote/g).length);
         assert.equal(1, result.match(/indent1/g).length);
 
     });
