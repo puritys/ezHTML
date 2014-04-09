@@ -85,6 +85,46 @@ describe('Normal html attribute', function(){
 
 });
 
+describe('Normal html link', function(){
+    it('Test link', function(){
+        var text = '#p b http://aa.bb.cc/a.html';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
+        assert.equal(1, result.match(/<a/).length);      
+
+    });
+    it('Test link', function(){
+        var text = '#p http://aa.bb.cc/a.html';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
+        assert.equal(1, result.match(/<a/).length);      
+
+    });
+
+    it('Test link', function(){
+        var text = '* http://aa.bb.cc/a.html';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
+        assert.equal(1, result.match(/<a/).length);      
+
+    });
+
+    it('Test link', function(){
+        var text = '* http://aa.bb.cc/a.html b';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+
+        assert.equal(1, result.match(/a\.html<\/a>/).length);      
+
+    });
+
+
+
+});
+
 
 
 
