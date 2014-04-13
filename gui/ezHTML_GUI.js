@@ -28,8 +28,8 @@
 		}
 		
 		if (this.config.iframe) {
-			var f=document.getElementById(this.config.iframe);
-			var head='';
+			var f = document.getElementById(this.config.iframe);
+			var head = '';
 			if(this.config.css){
 				var n=this.config.css.length;
 				
