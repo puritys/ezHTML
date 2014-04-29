@@ -101,6 +101,10 @@ textarea {
 * 判定Response是否正確
 * Get WSSID and Cookie
 
+#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo... 
+#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo... 
+#div content
+
 ## Show PHP/CSS/JS/C++ Code
 #code[js]#
 var b="faw";
@@ -119,6 +123,21 @@ function test($b) {
     $b++;
     $c = "s";
     return $c;
+}
+function getHeader($socket) {
+ 
+    $revHeader = getResponse($socket, 5);
+    $b1 = substr($revHeader, 0, 1);
+    $type = hexdec(bin2hex($b1));
+    $b2 = substr($revHeader, 1, 2);
+    $version = bin2hex($b2);
+    $b3 = substr($revHeader, 3, 2);
+    $length = hexdec(bin2hex($b3));
+    return array(
+        "type" => $type,
+        "length" => $length,
+        "version" => $version,
+    );
 }
 ?>
 
