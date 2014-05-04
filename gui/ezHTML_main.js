@@ -5,7 +5,7 @@
 */	
 function ezHTML_main() {
 
-}
+};
 
 var o = ezHTML_main.prototype;
 o.prefix = "ezHTML";
@@ -30,7 +30,7 @@ o.popup = function (E) {
         if (top <= 0) top = 50;
         if (left < 0) left = 50;
     }
-    window.open(url, "ezHTML_popup", "width=300, height=200, resizable=yes, status=no, top=" + top + ", left=" + left);
+    window.open(url, "ezHTML_popup", "width=" + dataInfo.width + ", height=" + dataInfo.height + ",  resizable=yes, status=no, top=" + top + ", left=" + left);
 };
 
 o.initial = function () {
