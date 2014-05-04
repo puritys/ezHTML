@@ -1,3 +1,12 @@
+a {
+    color: #0063E0;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
 h1 {
     margin: 0px 0 10px 0;
     max-width: 100%;
@@ -255,3 +264,47 @@ code {
     color: white;
     font-weight: bold;
 }
+
+.demo-link {
+    display: block;
+    font-size: 16px;
+    height: 45px;
+    padding: 8px 0 8px 60px;
+    position: relative;
+    width: 60px;
+    word-break: normal;
+    word-wrap: break-word;
+}
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('fonts/glyphicons-halflings-regular.eot');
+    src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-file {
+    color: #C50900;
+    font-size: 60px;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+
+.glyphicon-file:before {
+    content: "\e022";
+}
+
