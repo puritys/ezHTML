@@ -122,7 +122,6 @@
 		self.saveParagraph();
         text = $(this.config.source).val();
 		var html = this.text.transform(text);
-
 		$("#"+this.config.destination).val(html);
 		if (this.config.iframe) {
 			var f = document.getElementById(this.config.iframe);

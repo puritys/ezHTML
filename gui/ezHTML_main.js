@@ -19,6 +19,7 @@ o.popup = function (E) {
     node = $(E.currentTarget);
     url = node.attr('href');
     dataInfo = node.attr('data-info');
+    dataInfo = decodeURIComponent(dataInfo);
     eval("dataInfo = " + dataInfo);
     if (dataInfo) {
         if (dataInfo.width) {
@@ -30,6 +31,7 @@ o.popup = function (E) {
         if (top <= 0) top = 50;
         if (left < 0) left = 50;
     }
+
     window.open(url, "ezHTML_popup", "width=" + dataInfo.width + ", height=" + dataInfo.height + ",  resizable=yes, status=no, top=" + top + ", left=" + left);
 };
 
