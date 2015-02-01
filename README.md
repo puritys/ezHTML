@@ -74,3 +74,8 @@ function test(){
 #codeEnd#
 </pre>
 
+## Demo Text
+<pre>
+#demo[popup,200,500] xxxx.html
+</pre>
+
