@@ -7,6 +7,12 @@ But It has more features than markdown,  support dynamic HTML and have a better 
 Demo Page
 http://www.puritys.me/ezHTML/gui/
 
+
+<pre>
+var ezHTML = new ezHTML_generator();
+var resultHTML = ezHTML.transform();
+</pre>
+
 ## Normal HTML Tag
 
 <pre>
@@ -77,5 +83,10 @@ function test(){
 ## Demo Text
 <pre>
 #demo[popup,200,500] xxxx.html
+</pre>
+
+## Iframe
+<pre>
+#iframe[width=100%] xxxx.html
 </pre>
 

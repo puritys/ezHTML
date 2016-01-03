@@ -83,6 +83,18 @@ describe('Normal html attribute', function(){
 
     });
 
+    it('Test width 100px', function(){
+        var text = '100,200';
+        var result = ezHTML.getAttributes(text);
+        assert.equal("width: 100px;height: 200px;", result.style);
+    });
+
+    it('Test width 100%', function(){
+        var text = '100%, 200';
+        var result = ezHTML.getAttributes(text);
+        assert.equal("width: 100%;height: 200px;", result.style);
+    });
+
 });
 
 describe('Normal html link', function(){
@@ -179,6 +191,14 @@ describe('Image html tag', function(){
         assert.equal(1, result.match(/indent2/).length);
 
 
+    });
+
+    it('Test #img link', function () {
+        var text = '#img[width="300",link="me",target="_blank"] ../img.jpg';
+        var result = ezHTML.transform(text);
+        if (isDebug) console.log(result);
+        //console.log(result);
+        assert.equal(1, result.match(/a href="..\/img.jpg" target="_blank"/).length);
     });
 
 

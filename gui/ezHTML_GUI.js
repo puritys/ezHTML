@@ -146,7 +146,7 @@
 		var n = self.paragraph.length;
 		var html = "";
 		for (var i=0;i<n;i++) {
-			html+=self.paragraph[i].content;
+			html += self.paragraph[i].content;
 		}
 
 		$(self.config.source).val(html);
