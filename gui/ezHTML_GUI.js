@@ -239,7 +239,7 @@
 	}
 	
 	//輸出 各個片段的 move table
-	o.outputPieceTable = function() {
+	o.outputPieceTable = function() {//{{{
 		var html = "", li, ul;
 		var n = this.paragraph.length,i,mat,title;
 		var re = /[\s]*(##|#h2)[\s]([^\n\r]+)/,p,a;
@@ -295,7 +295,7 @@
 			return false;
 		});
 		$("#" + this.config.paragraphMenu).append(a);
-	};
+	};//}}}
 	
 	
 	/****段落處理****/

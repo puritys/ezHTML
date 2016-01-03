@@ -121,6 +121,11 @@ ul.list li {
   border: 1px solid #ECECF0;
   border-bottom: 0px;
 }
+
+.ez-iframe {
+    border-radius: 4px;
+    border: 1px solid #cecece;
+}
 .codeBlock .title:empty:before {
   content: "Example";
 }
@@ -305,8 +310,16 @@ code {
     top: 0;
 }
 
+.glyphicon-new-window {
+    color: #C50900;
+    font-size: 15px;
+    margin: 0px 0 0 3px;
+}
 
 .glyphicon-file:before {
     content: "\e022";
 }
 
+.glyphicon-new-window:before {
+    content: "\e164";
+}
