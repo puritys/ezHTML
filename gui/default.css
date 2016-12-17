@@ -323,3 +323,9 @@ code {
 .glyphicon-new-window:before {
     content: "\e164";
 }
+
+.glyphicon-chevron-right:before {
+    content: "\e080";
+    margin: 0 3px;
+    font-size: 12px;
+}

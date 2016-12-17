@@ -235,3 +235,17 @@ describe('Table html tag', function(){
 
 });
 
+//mocha lib/ --grep flow
+describe('flow', function(){
+    it('Test ##flow to html', function () {
+        var text = 'zz ##flow[arrow] A->B->C zzzz';
+        var result = ezHTML.transformFlow(text);
+
+console.log(result);
+        if (isDebug) console.log(result);
+
+    });
+
+
+});
+
