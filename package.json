@@ -1,0 +1,28 @@
+{
+  "name": "ez-html",
+  "version": "1.0.0",
+  "description": "ezHTML is a easy HTML editor like markdown.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "mocha": "^6.2.2"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puritys/ezHTML.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puritys/ezHTML/issues"
+  },
+  "homepage": "https://github.com/puritys/ezHTML#readme"
+}

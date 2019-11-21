@@ -63,23 +63,23 @@ describe('Normal html attribute', function(){
     it('Test class', function(){
         var text = '#h4[class=aa] h4';
         var result = ezHTML.transform(text);
-        assert.equal(1, result.match(/class="aa"/).length);      
+        assert.equal(1, result.match(/class="aa"/).length);
 
         var text = '#h4[class="aa"] h4';
         var result = ezHTML.transform(text);
-        assert.equal(1, result.match(/class="aa"/).length);      
+        assert.equal(1, result.match(/class="aa"/).length);
 
         var text = '#h4[aa] h4';
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
 
-        assert.equal(1, result.match(/class="aa"/).length);      
+        assert.equal(1, result.match(/class="aa"/).length);
 
         var text = '#div[a] div content';
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
 
-        assert.equal(1, result.match(/class="a"/).length);      
+        assert.equal(1, result.match(/class="a"/).length);
 
     });
 
@@ -103,7 +103,7 @@ describe('Normal html link', function(){
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
 
-        assert.equal(1, result.match(/<a/).length);      
+        assert.equal(1, result.match(/<a/).length);
 
     });
     it('Test link', function(){
@@ -111,7 +111,7 @@ describe('Normal html link', function(){
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
 
-        assert.equal(1, result.match(/<a/).length);      
+        assert.equal(1, result.match(/<a/).length);
 
     });
 
@@ -120,7 +120,7 @@ describe('Normal html link', function(){
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
 
-        assert.equal(1, result.match(/<a/).length);      
+        assert.equal(1, result.match(/<a/).length);
 
     });
 
@@ -129,7 +129,7 @@ describe('Normal html link', function(){
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
 
-        assert.equal(1, result.match(/a\.html<\/a>/).length);      
+        assert.equal(1, result.match(/a\.html<\/a>/).length);
 
     });
 
@@ -147,8 +147,8 @@ describe('Image html tag', function(){
         var result = ezHTML.transform(text);
         if (isDebug) console.log(result);
         assert.equal(1, result.match(/<img/).length);
-        assert.equal(1, result.match(/src="..\/img.jpg"/).length);      
-        assert.equal(1, result.match(/style="width: 100px;"/).length);      
+        assert.equal(1, result.match(/src="..\/img.jpg"/).length);
+        assert.equal(1, result.match(/style="width: 100px;"/).length);
 
 
     });
@@ -241,7 +241,6 @@ describe('flow', function(){
         var text = 'zz ##flow[arrow] A->B->C zzzz';
         var result = ezHTML.transformFlow(text);
 
-console.log(result);
         if (isDebug) console.log(result);
 
     });
@@ -249,3 +248,17 @@ console.log(result);
 
 });
 
+
+//mocha lib/ --grep codeblock
+describe('codeblock', function(){
+    it('Test code bloack `xxx` to <code>xxx</code>', function () {
+        var text = '#p Test `xxx`';
+        var result = ezHTML.transform(text);
+
+        if (isDebug) console.log(result);
+        assert.equal("<p>Test <code>xxx</code></p>", result);
+
+    });
+
+
+});

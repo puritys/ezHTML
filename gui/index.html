@@ -50,7 +50,7 @@ textarea {
 
 <!--- editor -->
 <div id="codeEditorLeft" style="float:left;width:140px;margin:0px 20px 0 0;"></div>
- 
+
 <div style="float:left;width:500px;margin: 0 0 30px 0;">
 
 <textarea style="width:700px;height:400px;padding: 10px; margin: 0 0 10px 0; font-size: 18px;" id="plain-text-source" >
@@ -60,7 +60,7 @@ textarea {
 
 #h2 Simple HTML Tag
 
-#p Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for <code>#content</code>, 10 for .data, 10 for :hover, 1 for http://aaa.bbb/ccc.html body and 1 for img.
+#p Start at 0, add `1000` for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for <code>#content</code>, 10 for .data, 10 for :hover, 1 for http://aaa.bbb/ccc.html body and 1 for img.
 
 #p[alt=test] test
 
@@ -105,8 +105,8 @@ textarea {
 #p Simple Arrow Flow:  ##flow[arrow] A->B->C
 
 #h2 Notice
-#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo... 
-#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo... 
+#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo...
+#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo...
 #div content
 
 #h2 Show PHP/CSS/JS/C++ Code
@@ -129,7 +129,7 @@ function test($b) {
     return $c;
 }
 function getHeader($socket) {
- 
+
     $revHeader = getResponse($socket, 5);
     $b1 = substr($revHeader, 0, 1);
     $type = hexdec(bin2hex($b1));

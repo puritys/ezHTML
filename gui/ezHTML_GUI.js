@@ -1,5 +1,5 @@
 (function(){
-	
+
 	/*****
 	ob => source 原始textarea的id
 	destination_view 預覽處
@@ -10,10 +10,10 @@
 	var self;
 	var cursPos; // 窗口全局变量，保存目标 TextBox 的最后一次活动光标位置
 	//{"source":"t1","destination_view":"view","destination":"t2"}
-	
+
 	/**
 	view 顯示處
-	
+
 	**/
 	function ezHTML_GUI(config) {//{{{
         var foot = "";
@@ -27,33 +27,33 @@
 			this.text.loadGoogleCodePretty(this.config.googleCodePerttyBaseUrl);
 			isloadGoogleCode=1;
 		}
-		
+
 		if (this.config.iframe) {
 			var f = document.getElementById(this.config.iframe);
 			var head = '';
 
     		if (this.config.css) {
 				var n=this.config.css.length;
-				
+
 				for(var i=0 ; i<n;i++){
 					if(i>0) {
                         head+='\n';
                     }
 					head += '<link href="'+this.config.css[i]+'" rel="stylesheet" type="text/css" />';
 				}
-				
+
 			}
 
     		if (this.config.js) {
 				n = this.config.js.length;
-				
+
 				for(i=0 ; i<n;i++){
 					if(i>0) {
                         head+='\n';
                     }
 					foot += '<script src="'+this.config.js[i]+'" type="application/javascript"></script>';
 				}
-				
+
 			}
 
 
@@ -61,11 +61,11 @@
 			f.contentWindow.document.write('<html><head>'+head+'</head><body></body> ' + foot + '</html>');
 			f.contentWindow.document.close();
 			//f.contentWindow.document.innerHTML='<html><head>'+head+'</head><body></body></html>';
-			
+
 		}
 		this.setEvent();
 	}//}}}
-	
+
 	var o = ezHTML_GUI.prototype;
 	o.setEvent = function() {
 		$(this.config.source).keydown(this.keydown);
@@ -79,9 +79,9 @@
             event.preventDefault();
 			return false;
 		}
-		
+
 	};
-	
+
 	o.insertAtCursor=function(myField, myValue) {
 	 //fixed scroll position
 	 textAreaScrollPosition = myField.scrollTop;
@@ -111,10 +111,10 @@
 		}
 		//fixed scroll position
 		myField.scrollTop = textAreaScrollPosition;
-	 
+
 	}
-	
-	
+
+
 	//將程式碼轉成可讀的文件 (當前內容)
 	o.transform = function() {
         var text;
@@ -131,7 +131,7 @@
         	$("#"+this.config.destination_view).html(html);
         }
 	};
-	
+
 	//轉換全部內容
 	o.transformAll = function() {//{{{
 		if (self.editParagraphNum >= 0) {
@@ -142,7 +142,7 @@
 			self.splitParagraph();
 			self.outputPieceTable();
 		}
-		
+
 		var n = self.paragraph.length;
 		var html = "";
 		for (var i=0;i<n;i++) {
@@ -151,22 +151,22 @@
 
 		$(self.config.source).val(html);
         self.transform();
-		try{
-		//	self.transform();
+		try {
+	    	//	self.transform();
 		} catch(err) {
             console.log(err);
 			alert("程式發生錯誤。");
 		}
 	};//}}}
-	
-	
-	
+
+
+
 	//Split code to multi paragraph by h2
 	o.splitParagraph = function() {//{{{
 		var code = $(this.config.source).val();
 		var re=/[^#](##|#h2)[\s]/i, mat, mat2, code2, search, search2;
 		var re2=/([a-z]+)/, data;
-		
+
 		search = code.search(re);
 		this.paragraph=Array();
 		this.paragraph[0] = Object();
@@ -175,7 +175,7 @@
 			this.paragraph[0].position="";
 			return true;
 		}
-		
+
 		this.paragraph[0].content = code.substr(0,search);
 		this.paragraph[0].position = "";
 		code = code.substr(search,code.length-search);
@@ -190,7 +190,7 @@
 				//search2=search2+mat[0].length+1;
 			}
 			data += code.substr(0,search2);
-			
+
 			mat2 = mat[1].match(re2);
 			var len = this.paragraph.length;
 			this.paragraph[len]=Object();
@@ -202,17 +202,17 @@
 			this.paragraph[len].content = data;
 			code = code.substr(data.length,code.length-data.length);
 			data="";
-			
+
 		}
 	};//}}}
-	
+
 	/****抓下一個##的開始位置****/
 	o.getMenuStartPosition = function(mat,code) {
 		var re=/[^#](##|#h2)[\s]/;
 		var pos,len=0;
 		len=mat.index+mat[0].length+1;
 		code2=code.substr(len,code.length-(len) );
-		
+
 		pos=len;
 		var k=code2.match(re);
 		if(!k){
@@ -227,7 +227,7 @@
 				pos+=k.index;
 				break;
 			}
-			
+
 			code2=code2.substr(len,code2.length-(len) );
 			k=code2.match(re);
 			if(!k){
@@ -237,7 +237,7 @@
 		}
 		return pos;
 	}
-	
+
 	//輸出 各個片段的 move table
 	o.outputPieceTable = function() {//{{{
 		var html = "", li, ul;
@@ -257,7 +257,7 @@
 			} else {
 				title = "Beginning";
 			}
-			 
+
 	        li = document.createElement('li');
             li.className = "list-group-item";
 			a = document.createElement('a');
@@ -275,10 +275,10 @@
 						self.deleteParagraph(this.i);
 					return false;
 				}
- 
+
 				return false;
 			});
-		 
+
             li.appendChild(a);
             ul.appendChild(li);
 		}
@@ -296,8 +296,8 @@
 		});
 		$("#" + this.config.paragraphMenu).append(a);
 	};//}}}
-	
-	
+
+
 	/****段落處理****/
 	o.addNewParagraph=function(){
         var n=self.paragraph.length;
@@ -308,7 +308,7 @@
         self.editParagraphNum=n;
         self.editParagraph(n,'nosave');
 	};
-	
+
 	//edit a paragraph
 	o.editParagraph=function(p,type) {
 		if (!type || type!='nosave') {
@@ -321,7 +321,7 @@
 	//儲存當前內容進入目標 paragraph
 	o.saveParagraph=function(){
 		if(self.editParagraphNum>=0){
-			self.paragraph[self.editParagraphNum].content=$(self.config.source).val();	
+			self.paragraph[self.editParagraphNum].content=$(self.config.source).val();
 		}
 	};
 
@@ -338,7 +338,7 @@
 		self.paragraph=newp;
 		self.outputPieceTable();
 	};//}}}
-	
+
 	o.paragraphContextMenu = function(event) {//{{{
 
 		var t='<div class="_btnMenuBox">';
@@ -355,10 +355,10 @@
 		if(l>$(document).width()-100){l-=80;}
 		if(t>$(document).height()-100){t-=80;}
 		$("#_editionBtnBox").css({zIndex:"110",position:"absolute",left:l,top:t,display:"block"});
-		
+
 		return false;
 	};//}}}
-	
+
 	String.prototype.trim = function()
 	{
 		return this.replace(/(^[\\s]*)|([\\s]*$)/g, "");
@@ -371,6 +371,6 @@
 	{
 		return this.replace(/([\\s]*$)/g, "");
 	}
- 
+
 	window.ezHTML_GUI = ezHTML_GUI;
 }())
