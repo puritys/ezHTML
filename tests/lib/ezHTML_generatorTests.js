@@ -251,12 +251,34 @@ describe('flow', function(){
 
 //mocha lib/ --grep codeblock
 describe('codeblock', function(){
-    it('Test code bloack `xxx` to <code>xxx</code>', function () {
+    it('Test code bloak `xxx` to <code>xxx</code>', function () {
         var text = '#p Test `xxx`';
         var result = ezHTML.transform(text);
 
         if (isDebug) console.log(result);
         assert.equal("<p>Test <code>xxx</code></p>", result);
+
+    });
+
+
+});
+
+
+//mocha lib/ --grep sourceCode
+describe('sourceCode', function(){
+    it('Test source code ```xxx``` to google pretty', function () {
+        var text = 'ss \n \
+```\n\
+xxx\n  \
+```\
+        ';
+        try {
+            var result = ezHTML.transform(text);
+        } catch (e) {
+
+        }
+
+        if (isDebug) console.log("result = ", result);
 
     });
 
