@@ -61,7 +61,10 @@
 			f.contentWindow.document.write('<html><head>'+head+'</head><body></body> ' + foot + '</html>');
 			f.contentWindow.document.close();
 			//f.contentWindow.document.innerHTML='<html><head>'+head+'</head><body></body></html>';
-
+            console.log(this.config);
+            if (this.config.autoUpdateMs && this.config.autoUpdateMs > 0) {
+                this.autoUpdate();
+            }
 		}
 		this.setEvent();
 	}//}}}
@@ -358,6 +361,16 @@
 
 		return false;
 	};//}}}
+
+    o.autoUpdate = function()  {
+        console.log("ezHTML auto update");
+        try {
+            this.transformAll();
+        } catch (e) {
+            console.log("failed to transformAll, err = ", e);
+        }
+        setTimeout(this.autoUpdate.bind(this), this.config.autoUpdateMs);
+    }
 
 	String.prototype.trim = function()
 	{
